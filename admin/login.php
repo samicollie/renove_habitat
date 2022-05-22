@@ -8,11 +8,7 @@ if(isset($_SESSION['user_login'])){
         if(isset($_POST['user_name'])){
             $user_input_login = $_POST['user_name'];
             $user_input_password = $_POST['pwd'];
-            $mysqli = new mysqli('localhost', 'root', '', 'renovehabitat');
-            if($mysqli->connect_errno){
-                echo 'Echec de connexion ' . $mysqli->connect_error;
-                exit();
-            }
+            require('../inc/inc_dataconnexion.php');
             if($result = $mysqli->query('SELECT user_login, user_password FROM
              user WHERE user_login="' . $user_input_login . '"')){
                  $row = $result->fetch_array();
@@ -20,7 +16,7 @@ if(isset($_SESSION['user_login'])){
                     $user_login= $row['user_login'];
                     $user_password = $row['user_password'];
                     if(crypt($user_input_password, $user_password) != $user_password){
-                        $msg_error ='<p class="error"> Mot de passe erroné </p>';
+                        $msg_error ='<p class="text-danger"> Mot de passe erroné </p>';
                     }
                     else{
                         session_start();
@@ -29,15 +25,15 @@ if(isset($_SESSION['user_login'])){
                     }
                 }
                 else{
-                    $msg_error ='<p class="error"> Ce nom d\'utilisateur n\'existe pas. </p>';
+                    $msg_error ='<p class="text-danger"> Ce nom d\'utilisateur n\'existe pas. </p>';
                 }
              }
              else{
-                $msg_error ='<p class="error"> Une erreur est survenue lors de l\'accès à la base. </p>';
+                $msg_error ='<p class="text-danger"> Une erreur est survenue lors de l\'accès à la base. </p>';
              }
         }
         else{
-            $msg_error ='<p class="error"> Vous devez saisir un nom d\'utilisateur. </p>';
+            $msg_error ='<p class="text-danger"> Vous devez saisir un nom d\'utilisateur. </p>';
         }
     }
 ?>
@@ -57,12 +53,12 @@ if(isset($_SESSION['user_login'])){
 </head>
 
 <body>
-    <div class="wrapper container mt-2">
+    <div class="container mt-2">
 
         <header class=" bg-primary p-3 rounded-3">
             <div class="row">
                 <div class="col-sm-12 col-md-3">
-                    <img class="logo img-fluid" src="../img/logo.png" alt="logo">
+                    <img class="img-fluid" src="../img/logo.png" alt="logo">
                 </div>
                 <div class="col-sm-12 col-md-9 text-center text-white align-self-center">
                     <h1>Renove Habitat</h1>
@@ -71,9 +67,12 @@ if(isset($_SESSION['user_login'])){
             </div>
         </header>
 
-        <?php if(isset($msg_error)) echo $msg_error ?>
+
         <div class="d-flex justify-content-center m-5">
-            <form class="login-form " action="login.php" method="post">
+            <form action="login.php" method="post">
+
+                <?php if(isset($msg_error)) echo $msg_error ?>
+
                 <p>Nom d'utilisateur : </p>
                 <input type="text" name="user_name">
                 <p>Mot de passe :</p>
