@@ -33,10 +33,10 @@
         <div class="row">
             <nav class="col-sm-12 col-md-3 ">
                 <div class="btn-group d-flex flex-column justify-content-center bg-primary p-3 mt-2 mb-2">
-                    <a href="index.php" class="btn btn-primary active mb-1" aria-current="page">Accueil</a>
+                    <a href="index.php" class="btn btn-primary active mb-1 rounded-2" aria-current="page">Accueil</a>
 
-                </div>
-                <?php
+
+                    <?php
         // requete pour récupérer les catégories dans la bdd
         if($result= $mysqli->query('SELECT id_cat, nom_cat FROM categories ')){
             while($row = $result->fetch_array()){
@@ -45,16 +45,17 @@
         }
         //Affichage
         ?>
-                <?php if(isset($categories)): ?>
-                <?php foreach($categories as $id => $categorie): ?>
-                <a href="categorie.php?cat=<?php echo $id ?>" class="btn btn-primary mb-1"><?php echo $categorie ?></a>
+                    <?php if(isset($categories)): ?>
+                    <?php foreach($categories as $id => $categorie): ?>
+                    <a href="categorie.php?cat=<?php echo $id ?>"
+                        class="btn btn-primary bg-secondary mb-1 rounded-2"><?php echo $categorie ?></a>
 
 
 
-                <?php endforeach ?>
-                <?php endif ?>
+                    <?php endforeach ?>
+                    <?php endif ?>
 
-                </ul>
+                </div>
             </nav>
             <div class="col-sm-12 col-md-9">
                 contenu
