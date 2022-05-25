@@ -31,7 +31,7 @@
                 <nav class="col-sm-12 col-md-3 ">
                     <div class="btn-group d-flex flex-column justify-content-center bg-primary p-3 mt-2 mb-2">
                         <a href="../admin/admin.php" class="btn btn-primary active mb-1 rounded-2"
-                            aria-current="page">Accueil</a>
+                            aria-current="page">Accueil Admin</a>
 
                         <?php
         // requete pour récupérer les catégories dans la bdd
@@ -69,13 +69,15 @@
                 </div>
 
         </main>
+
+        <?php require('../inc/inc_admin_footer.php'); ?>
     </div>
 
 
 
-    <?php require('../inc/inc_admin_footer.php'); ?>
 
-    </div>
+
+
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
